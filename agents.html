@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUGIO AI Agents - Marketplace & Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        copper: {
+                            50: '#fdf4f3', 100: '#fce8e6', 200: '#f9d5d1', 300: '#f4b5ad',
+                            400: '#ec8b7a', 500: '#d97706', 600: '#c2410c', 700: '#9a3412',
+                            800: '#7c2d12', 900: '#431407',
+                        },
+                        neural: { 800: '#1a1a1a', 900: '#0a0a0a', 950: '#000000' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-morphism {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+        .fugio-coin {
+            background: linear-gradient(45deg, #d97706, #c2410c, #d97706, #9a3412);
+            background-size: 400% 400%;
+            animation: coin-shine 4s ease-in-out infinite;
+        }
+        @keyframes coin-shine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .agent-pulse {
+            animation: agent-pulse 2s ease-in-out infinite;
+        }
+        @keyframes agent-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-neural-950 text-white" x-data="agentMarketplace()">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 fugio-coin rounded-full flex items-center justify-center text-white font-bold text-lg">F</div>
+                        <span class="text-2xl font-bold">FUGIO</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="protocol.html" class="hover:text-copper-400 transition-colors">Protocol</a>
+                    <a href="ecosystem.html" class="hover:text-copper-400 transition-colors">Ecosystem</a>
+                    <a href="agents.html" class="text-copper-400 font-semibold">AI Agents</a>
+                    <a href="tokenomics.html" class="hover:text-copper-400 transition-colors">Tokenomics</a>
+                    <a href="technical.html" class="hover:text-copper-400 transition-colors">Technical</a>
+                    <a href="developers.html" class="hover:text-copper-400 transition-colors">Developers</a>
+                    <a href="security.html" class="hover:text-copper-400 transition-colors">Security</a>
+                    <a href="competitive.html" class="hover:text-copper-400 transition-colors">Compare</a>
+                </div>
+                <a href="index.html#mint" class="bg-gradient-to-r from-copper-600 to-copper-700 hover:from-copper-700 hover:to-copper-800 px-6 py-2 rounded-lg font-semibold transition-all">
+                    Deploy Agent
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-neural-950 via-neural-900 to-neural-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h1 class="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                    AI AGENTS
+                </h1>
+                <p class="text-2xl text-gray-300 mb-6">
+                    Marketplace & Agent Gallery
+                </p>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    Discover, deploy, and trade AI agents built by the FUGIO community. Each agent is unique, specialized, and ready to work for you.
+                </p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap gap-4 justify-center mb-12">
+                <button @click="activeFilter = 'all'" :class="activeFilter === 'all' ? 'bg-copper-600 text-white' : 'bg-neural-800 text-gray-400 hover:text-white'" class="px-6 py-2 rounded-lg font-semibold transition-all">
+                    All Agents
+                </button>
+                <button @click="activeFilter = 'trading'" :class="activeFilter === 'trading' ? 'bg-copper-600 text-white' : 'bg-neural-800 text-gray-400 hover:text-white'" class="px-6 py-2 rounded-lg font-semibold transition-all">
+                    Trading
+                </button>
+                <button @click="activeFilter = 'content'" :class="activeFilter === 'content' ? 'bg-copper-600 text-white' : 'bg-neural-800 text-gray-400 hover:text-white'" class="px-6 py-2 rounded-lg font-semibold transition-all">
+                    Content
+                </button>
+                <button @click="activeFilter = 'research'" :class="activeFilter === 'research' ? 'bg-copper-600 text-white' : 'bg-neural-800 text-gray-400 hover:text-white'" class="px-6 py-2 rounded-lg font-semibold transition-all">
+                    Research
+                </button>
+                <button @click="activeFilter = 'development'" :class="activeFilter === 'development' ? 'bg-copper-600 text-white' : 'bg-neural-800 text-gray-400 hover:text-white'" class="px-6 py-2 rounded-lg font-semibold transition-all">
+                    Development
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Agents -->
+    <section class="py-20 bg-neural-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Featured Agents
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Alpha Trading Bot -->
+                <div class="glass-morphism rounded-2xl p-8 hover:bg-copper-900/10 transition-all duration-300 cursor-pointer" @click="showAgentDetail('alpha-trader')">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-2xl agent-pulse">
+                            📈
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-400">Type</div>
+                            <div class="text-xl font-bold text-green-400">Trading</div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Alpha Trader</h3>
+                    <p class="text-gray-400 mb-4">Advanced DeFi trading agent with yield farming and arbitrage capabilities. Manages portfolios up to $1M with 94.7% success rate.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm bg-green-600 px-3 py-1 rounded-full">Trading</span>
+                        <span class="text-copper-400 font-bold">0.25 ETH</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Capabilities:</span>
+                            <span class="text-copper-400">DeFi + Arbitrage</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Uptime:</span>
+                            <span class="text-green-400">99.9%</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Status:</span>
+                            <span class="text-green-400">Ready to Deploy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Creator -->
+                <div class="glass-morphism rounded-2xl p-8 hover:bg-copper-900/10 transition-all duration-300 cursor-pointer" @click="showAgentDetail('content-creator')">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-2xl agent-pulse">
+                            ✍️
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-400">Type</div>
+                            <div class="text-xl font-bold text-purple-400">Content</div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Content Creator Pro</h3>
+                    <p class="text-gray-400 mb-4">Multi-platform content generation agent. Creates blogs, social media posts, and marketing copy with SEO optimization.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm bg-purple-600 px-3 py-1 rounded-full">Content</span>
+                        <span class="text-copper-400 font-bold">0.15 ETH</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Capabilities:</span>
+                            <span class="text-copper-400">Multi-platform</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Languages:</span>
+                            <span class="text-green-400">25+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Status:</span>
+                            <span class="text-green-400">Ready to Deploy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Assistant -->
+                <div class="glass-morphism rounded-2xl p-8 hover:bg-copper-900/10 transition-all duration-300 cursor-pointer" @click="showAgentDetail('research-assistant')">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center text-2xl agent-pulse">
+                            🔍
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-400">Type</div>
+                            <div class="text-xl font-bold text-blue-400">Research</div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Research Assistant</h3>
+                    <p class="text-gray-400 mb-4">Deep research agent that gathers, analyzes, and synthesizes information from 1000+ sources in real-time.</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm bg-blue-600 px-3 py-1 rounded-full">Research</span>
+                        <span class="text-copper-400 font-bold">0.12 ETH</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Capabilities:</span>
+                            <span class="text-copper-400">Deep Analysis</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Speed:</span>
+                            <span class="text-green-400">&lt;5 min</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Status:</span>
+                            <span class="text-green-400">Ready to Deploy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Categories -->
+    <section class="py-20 bg-neural-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Agent Categories
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-morphism rounded-xl p-6 text-center hover:bg-copper-900/10 transition-all duration-300">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Trading & DeFi</h3>
+                    <p class="text-gray-400 text-sm mb-4">Automated trading, yield farming, and portfolio management agents</p>
+                    <div class="text-copper-400 font-bold">Available at Launch</div>
+                </div>
+                
+                <div class="glass-morphism rounded-xl p-6 text-center hover:bg-copper-900/10 transition-all duration-300">
+                    <div class="text-4xl mb-4">📝</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Content & Marketing</h3>
+                    <p class="text-gray-400 text-sm mb-4">Content creation, social media, and marketing automation agents</p>
+                    <div class="text-copper-400 font-bold">Available at Launch</div>
+                </div>
+
+                <div class="glass-morphism rounded-xl p-6 text-center hover:bg-copper-900/10 transition-all duration-300">
+                    <div class="text-4xl mb-4">🔬</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Research & Analysis</h3>
+                    <p class="text-gray-400 text-sm mb-4">Data analysis, market research, and intelligence gathering agents</p>
+                    <div class="text-copper-400 font-bold">Available at Launch</div>
+                </div>
+
+                <div class="glass-morphism rounded-xl p-6 text-center hover:bg-copper-900/10 transition-all duration-300">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Development & Code</h3>
+                    <p class="text-gray-400 text-sm mb-4">Code generation, testing, and deployment automation agents</p>
+                    <div class="text-copper-400 font-bold">Available at Launch</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Specifications -->
+    <section class="py-20 bg-neural-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Agent Specifications
+            </h2>
+
+            <div class="glass-morphism rounded-2xl p-8">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-copper-900/30">
+                                <th class="text-left py-4 text-copper-400">Agent Type</th>
+                                <th class="text-left py-4 text-copper-400">Category</th>
+                                <th class="text-left py-4 text-copper-400">Capabilities</th>
+                                <th class="text-left py-4 text-copper-400">Deployment Cost</th>
+                                <th class="text-left py-4 text-copper-400">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-neural-800">
+                                <td class="py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center text-sm">📈</div>
+                                        <span class="text-white font-semibold">Alpha Trader</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-gray-400">Trading</td>
+                                <td class="py-4 text-green-400">DeFi, Arbitrage, Portfolio Management</td>
+                                <td class="py-4 text-white">0.25 ETH</td>
+                                <td class="py-4 text-copper-400 font-bold">Ready</td>
+                            </tr>
+                            <tr class="border-b border-neural-800">
+                                <td class="py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-sm">✍️</div>
+                                        <span class="text-white font-semibold">Content Creator Pro</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-gray-400">Content</td>
+                                <td class="py-4 text-purple-400">Multi-platform, SEO, Brand Voice</td>
+                                <td class="py-4 text-white">0.15 ETH</td>
+                                <td class="py-4 text-copper-400 font-bold">Ready</td>
+                            </tr>
+                            <tr class="border-b border-neural-800">
+                                <td class="py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-sm">🔍</div>
+                                        <span class="text-white font-semibold">Research Assistant</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 text-gray-400">Research</td>
+                                <td class="py-4 text-blue-400">Data Analysis, Market Research, Reports</td>
+                                <td class="py-4 text-white">0.12 ETH</td>
+                                <td class="py-4 text-copper-400 font-bold">Ready</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-neural-950 border-t border-copper-900/30">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 fugio-coin rounded-full flex items-center justify-center text-white font-bold">F</div>
+                <span class="text-xl font-bold">FUGIO Protocol</span>
+            </div>
+            <p class="text-gray-400">Deploy Your AI Workforce</p>
+        </div>
+    </footer>
+
+    <script>
+        function agentMarketplace() {
+            return {
+                activeFilter: 'all',
+                showAgentDetail(agentId) {
+                    const agentDetails = {
+                        'alpha-trader': 'Alpha Trader - Advanced DeFi trading agent with machine learning algorithms for optimal yield farming and arbitrage opportunities. Features real-time market analysis, risk management, and automated portfolio rebalancing.',
+                        'content-creator': 'Content Creator Pro - Multi-platform content generation with SEO optimization, brand voice matching, and automated publishing across 15+ social media platforms.',
+                        'research-assistant': 'Research Assistant - Deep research capabilities with access to 1000+ data sources, real-time fact checking, and comprehensive report generation in multiple formats.'
+                    };
+                    
+                    alert(`🤖 Agent Details\n\n${agentDetails[agentId]}\n\n• Full technical specifications\n• Performance analytics\n• Deployment options\n• Customization settings\n\nThis would open a detailed agent profile page with live demos and deployment options.`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

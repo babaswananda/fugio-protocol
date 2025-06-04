@@ -1,0 +1,42 @@
+{
+  "name": "fugio-protocol",
+  "version": "1.0.0",
+  "description": "FUGIO Protocol Intelligence Stack - Operator-native AI Agent ecosystem",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "deploy": "turbo run deploy",
+    "mint:setup": "node scripts/setup-minting.js",
+    "ollama:package": "node apps/ollama-packager/cli.js"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "ai",
+    "blockchain",
+    "protocol",
+    "agent",
+    "bitcoin",
+    "operator",
+    "fugio"
+  ],
+  "author": "FUGIO Protocol Team",
+  "license": "MIT"
+}

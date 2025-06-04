@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+  "references": [
+    { "path": "../../packages/shared" },
+    { "path": "../../packages/worldmodel" },
+    { "path": "../../packages/io-agent" },
+    { "path": "../../packages/augment-code" },
+    { "path": "../../packages/keto-code" },
+    { "path": "../../packages/alpha-router" },
+    { "path": "../../packages/codex-memory" }
+  ]
+}

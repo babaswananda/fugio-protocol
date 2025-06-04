@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUGIO Protocol - Technical Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        copper: {
+                            50: '#fdf4f3', 100: '#fce8e6', 200: '#f9d5d1', 300: '#f4b5ad',
+                            400: '#ec8b7a', 500: '#d97706', 600: '#c2410c', 700: '#9a3412',
+                            800: '#7c2d12', 900: '#431407',
+                        },
+                        neural: { 800: '#1a1a1a', 900: '#0a0a0a', 950: '#000000' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-morphism {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+        .fugio-coin {
+            background: linear-gradient(45deg, #d97706, #c2410c, #d97706, #9a3412);
+            background-size: 400% 400%;
+            animation: coin-shine 4s ease-in-out infinite;
+        }
+        @keyframes coin-shine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-neural-950 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 fugio-coin rounded-full flex items-center justify-center text-white font-bold text-lg">F</div>
+                        <span class="text-2xl font-bold">FUGIO</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="protocol.html" class="text-copper-400 font-semibold">Protocol</a>
+                    <a href="ecosystem.html" class="hover:text-copper-400 transition-colors">Ecosystem</a>
+                    <a href="agents.html" class="hover:text-copper-400 transition-colors">AI Agents</a>
+                    <a href="tokenomics.html" class="hover:text-copper-400 transition-colors">Tokenomics</a>
+                    <a href="technical.html" class="hover:text-copper-400 transition-colors">Technical</a>
+                    <a href="developers.html" class="hover:text-copper-400 transition-colors">Developers</a>
+                    <a href="security.html" class="hover:text-copper-400 transition-colors">Security</a>
+                    <a href="competitive.html" class="hover:text-copper-400 transition-colors">Compare</a>
+                </div>
+                <a href="index.html#mint" class="bg-gradient-to-r from-copper-600 to-copper-700 hover:from-copper-700 hover:to-copper-800 px-6 py-2 rounded-lg font-semibold transition-all">
+                    Launch App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-neural-950 via-neural-900 to-neural-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h1 class="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                    PROTOCOL
+                </h1>
+                <p class="text-2xl text-gray-300 mb-6">
+                    The Technical Foundation of Decentralized AI
+                </p>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    FUGIO Protocol represents the most advanced architecture for deploying, managing, and monetizing AI agents on blockchain infrastructure.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Overview -->
+    <section class="py-20 bg-neural-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Seven-Layer Architecture
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <!-- Layer 1: WorldModel -->
+                <div class="glass-morphism rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">1</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">WorldModel</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Foundational AI intelligence layer trained on 50TB of protocol-specific data including blockchain transactions, DeFi protocols, market dynamics, and cultural memetics.
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Training Data:</span>
+                            <span class="text-copper-400">50TB+ Multi-modal</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Model Size:</span>
+                            <span class="text-copper-400">175B Parameters</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Inference Speed:</span>
+                            <span class="text-copper-400">&lt;200ms</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Accuracy:</span>
+                            <span class="text-copper-400">94.7%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 2: IO Agent -->
+                <div class="glass-morphism rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">IO Agent</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Personal AI instantiation that creates unique agent instances for each operator, with persistent memory and continuous learning capabilities.
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Memory Capacity:</span>
+                            <span class="text-copper-400">Unlimited</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Learning Rate:</span>
+                            <span class="text-copper-400">Real-time</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Personalization:</span>
+                            <span class="text-copper-400">Deep Context</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Privacy:</span>
+                            <span class="text-copper-400">End-to-End Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 3: Augment Code -->
+                <div class="glass-morphism rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">3</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Augment Code</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Contextual augmentation engine that transforms AI responses to match operator preferences, cultural context, and stylistic requirements.
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Style Options:</span>
+                            <span class="text-copper-400">50+ Presets</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Customization:</span>
+                            <span class="text-copper-400">Granular Control</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Processing:</span>
+                            <span class="text-copper-400">Real-time</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Languages:</span>
+                            <span class="text-copper-400">95+ Supported</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 4: Keto Code -->
+                <div class="glass-morphism rounded-2xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">4</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">Keto Code</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        KiloCode CS extension integration providing code analysis, security enforcement, and compliance checking through VS Code ecosystem.
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Extensions:</span>
+                            <span class="text-copper-400">500+ Available</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Security Scans:</span>
+                            <span class="text-copper-400">Real-time</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Code Quality:</span>
+                            <span class="text-copper-400">Enterprise Grade</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-500">Integration:</span>
+                            <span class="text-copper-400">Native VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="py-20 bg-neural-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Technical Specifications
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-morphism rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-copper-400 mb-4">Blockchain Infrastructure</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• Ethereum mainnet deployment</li>
+                        <li>• ERC-721 agent NFTs</li>
+                        <li>• ERC-20 FUGIO token</li>
+                        <li>• Multi-sig governance</li>
+                        <li>• Upgradeable contracts</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-morphism rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-copper-400 mb-4">AI Infrastructure</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• Distributed compute network</li>
+                        <li>• GPU cluster optimization</li>
+                        <li>• Model versioning system</li>
+                        <li>• A/B testing framework</li>
+                        <li>• Performance monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-morphism rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-copper-400 mb-4">Security Features</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• End-to-end encryption</li>
+                        <li>• Zero-knowledge proofs</li>
+                        <li>• Secure enclaves</li>
+                        <li>• Audit trail logging</li>
+                        <li>• Penetration testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section class="py-20 bg-neural-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent">
+                Developer APIs
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-6">Core Endpoints</h3>
+                    <div class="space-y-4">
+                        <div class="glass-morphism rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-green-400">POST /api/v1/agents</span>
+                                <span class="text-xs bg-green-600 px-2 py-1 rounded">CREATE</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Deploy a new AI agent instance</p>
+                        </div>
+                        
+                        <div class="glass-morphism rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-blue-400">GET /api/v1/agents/{id}</span>
+                                <span class="text-xs bg-blue-600 px-2 py-1 rounded">READ</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Retrieve agent configuration and status</p>
+                        </div>
+                        
+                        <div class="glass-morphism rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-yellow-400">PUT /api/v1/agents/{id}</span>
+                                <span class="text-xs bg-yellow-600 px-2 py-1 rounded">UPDATE</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Update agent parameters and settings</p>
+                        </div>
+                        
+                        <div class="glass-morphism rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-purple-400">POST /api/v1/missions</span>
+                                <span class="text-xs bg-purple-600 px-2 py-1 rounded">EXECUTE</span>
+                            </div>
+                            <p class="text-sm text-gray-400">Submit mission for agent execution</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-6">Code Example</h3>
+                    <div class="glass-morphism rounded-lg p-6">
+                        <pre class="text-sm text-gray-300 overflow-x-auto"><code>// Deploy a new FUGIO agent
+const agent = await fugio.agents.create({
+  name: "TradingBot-Alpha",
+  specialization: "defi-trading",
+  tier: "pro",
+  config: {
+    riskTolerance: 0.7,
+    maxPositionSize: 1000,
+    strategies: ["arbitrage", "yield-farming"]
+  }
+});
+
+// Execute a mission
+const mission = await agent.execute({
+  type: "analyze-pool",
+  params: {
+    protocol: "uniswap-v3",
+    pair: "ETH/USDC",
+    timeframe: "24h"
+  }
+});
+
+console.log(mission.result);
+// Output: Detailed pool analysis with recommendations</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-neural-950 border-t border-copper-900/30">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 fugio-coin rounded-full flex items-center justify-center text-white font-bold">F</div>
+                <span class="text-xl font-bold">FUGIO Protocol</span>
+            </div>
+            <p class="text-gray-400">The Future of AI Ownership</p>
+        </div>
+    </footer>
+</body>
+</html>

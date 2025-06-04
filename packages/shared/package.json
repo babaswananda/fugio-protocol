@@ -1,0 +1,22 @@
+{
+  "name": "@fugio/shared",
+  "version": "1.0.0",
+  "description": "Shared utilities and types for FUGIO Protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "test": "jest"
+  },
+  "dependencies": {
+    "zod": "^3.22.0",
+    "ethers": "^6.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0"
+  }
+}
