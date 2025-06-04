@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  // Remove experimental appDir as it's no longer experimental in Next.js 14
   transpilePackages: [
     '@fugio/shared',
     '@fugio/worldmodel',
