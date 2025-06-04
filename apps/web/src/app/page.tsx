@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Zap, Shield, Code, Router, Database, Cpu } from 'lucide-react';
 import MintScreen from '@/components/MintScreen';
-import ProtocolOverview from '@/components/ProtocolOverview';
 
 export default function HomePage() {
   const [showMint, setShowMint] = useState(false);
