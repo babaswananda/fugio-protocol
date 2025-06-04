@@ -2,5 +2,18 @@
   "public": true,
   "github": {
     "enabled": true
-  }
+  },
+  "protection": false,
+  "authentication": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
 }
