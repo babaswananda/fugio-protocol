@@ -3,8 +3,6 @@
   "github": {
     "enabled": true
   },
-  "protection": false,
-  "authentication": false,
   "headers": [
     {
       "source": "/(.*)",
